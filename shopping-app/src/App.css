@@ -1,0 +1,41 @@
+
+.App {
+  text-align: center;
+}
+
+.header-container {
+  position: relative;
+  width: 1280px;
+  height: 80px;
+  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 55px;
+  height: 30px;
+  position: absolute;
+  left: 5.94%;
+  right: 89.77%;
+  top: 31.25%;
+  bottom: 31.25%;
+}
+
+.shopping_name {
+    position: absolute;
+    left: 11.17%;
+    right: 70.86%;
+    top: 31.48%;
+    bottom: 31.48%;
+  
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 88.02%;
+    /* or 28px */
+  
+    display: flex;
+    align-items: center;
+  
+    color: #000000;
+}
