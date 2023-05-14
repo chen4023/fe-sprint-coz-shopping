@@ -1,11 +1,12 @@
-
+* {
+  font-family: 'Inter';
+}
 .App {
   text-align: center;
 }
 
 .header-container {
-  position: relative;
-  width: 1280px;
+  position: sticky;
   height: 80px;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
 }
@@ -32,10 +33,48 @@
     font-weight: 700;
     font-size: 32px;
     line-height: 88.02%;
-    /* or 28px */
-  
     display: flex;
     align-items: center;
-  
     color: #000000;
 }
+
+.hamburger_menu {
+  position: absolute;
+  left: 88.88%;
+  top: 28.33%;
+  bottom: 8.33%;
+}
+
+
+.dropdown {
+  position: relative;
+  right:50% ;
+  filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.1));
+}
+
+.menus {
+  width: 200px;
+  height: 172px;
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  background: #FFFFFF;
+  border-radius: 12px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 33%;
+  text-decoration : none;
+  color: #000000;
+  padding: 8px 13px;
+
+}
+
+.menu:nth-child(2) {
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+  border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+

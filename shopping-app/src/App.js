@@ -1,11 +1,18 @@
 import './App.css';
-import Header from './components/Header';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Main from './pages/Main'
+import Product from './pages/Product'
+import BookMark from './pages/BookMark'
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Main/>}></Route>
+        <Route path='/product' element={<Product/>}></Route>
+        <Route path='/bookmark' element={<BookMark/>}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
