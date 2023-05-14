@@ -1,6 +1,4 @@
-* {
-  font-family: 'Inter';
-}
+
 .App {
   text-align: center;
 }
@@ -47,8 +45,8 @@
 
 
 .dropdown {
-  position: relative;
-  right:50% ;
+  position: absolute;
+  right: -50px;
   filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.1));
 }
 
@@ -78,3 +76,28 @@
   border-top: 0.5px solid rgba(0, 0, 0, 0.1);
 }
 
+
+.footer_container{
+  height: 58px;
+  margin-top: auto;
+}
+
+.footer_contents {
+  width: 100%;
+  height:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+  color:#888888;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.main {
+  min-height: calc(100vh - 142px);
+}
