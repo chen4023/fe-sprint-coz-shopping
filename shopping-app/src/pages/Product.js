@@ -3,13 +3,14 @@ import React,{useState, useEffect} from 'react';
 
 
 export default function Product() {
-    
+
     const[datas, setDatas] = useState([])
     useEffect(()=> {
         fetch("http://cozshopping.codestates-seb.link/api/v1/products?")
         .then((res) => res.json())
         .then((data) => setDatas(data))
     },[]);
+    
     console.log(datas)
 
     return (
