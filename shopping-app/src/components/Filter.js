@@ -7,9 +7,7 @@ export default function Filter({product, bookMarkData}) {
   const [imageTarget, setImageTarget] = useState("");
   const [imageTitle, setimageTitle] = useState("");
 
-  let getBookMarkArr = [...bookMarkData]
-
-  
+  let getBookMarkArr = [...bookMarkData];
 
   const handleModal = (imageUrl, title) => {
     setModalOn(!modalOn);

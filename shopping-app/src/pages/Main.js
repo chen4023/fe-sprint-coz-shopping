@@ -13,7 +13,7 @@ export default function Main() {
         .then((res) => res.json())
         .then((data) => setProduct(data))
     },[]);
-    console.log(getBookMark)
+    console.log(product)
     return (
         <div>
             <div className='main'>
@@ -34,4 +34,5 @@ export default function Main() {
         </div>
     );
 }
+
 
