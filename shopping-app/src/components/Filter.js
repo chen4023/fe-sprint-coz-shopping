@@ -2,17 +2,30 @@ import React, { useState } from 'react';
 import { HiStar } from "react-icons/hi";
 import Modal from './Modal';
 
-export default function Filter({product}) {
+export default function Filter({product, bookMarkData}) {
   const [modalOn, setModalOn] = useState(false);
   const [imageTarget, setImageTarget] = useState("");
-  const [imageTitle, setimageTitle] = useState("")
+  const [imageTitle, setimageTitle] = useState("");
+
+  let getBookMarkArr = [...bookMarkData]
+
+  
 
   const handleModal = (imageUrl, title) => {
     setModalOn(!modalOn);
     setImageTarget(imageUrl);
     setimageTitle(title);
   }
-  console.log(product);
+
+  const handler = (product) => {
+    if(getBookMarkArr.filter((item) => item.id === product.id).length >0) {
+      getBookMarkArr = getBookMarkArr.filter((item) => item.id !== product.id)
+    } else {
+      getBookMarkArr.push(product);
+    }
+    localStorage.setItem('bookmark', [JSON.stringify(getBookMarkArr)])
+  }
+
   return (
     <ul className='product-list'>
       {product.map((product) => {
@@ -21,7 +34,12 @@ export default function Filter({product}) {
             return (
               <li key={product.id} className='product'>
                 <img onClick={()=> handleModal(product.image_url, product.title )} className = "product_img" src={product.image_url} alt={product.title}/>
-                <HiStar className='star'/>
+                <HiStar 
+                onClick={()=>handler(product)} 
+                className={[
+                "star",
+                getBookMarkArr.filter((item) => item.id === product.id).length >0 ? "active":"",
+                ].join(" ")}/>
                 <div className='product-box'>
                   <p className='title'>{product.title}</p>
                   <p className='discount-percentage'>{product.discountPercentage} %</p>
@@ -33,7 +51,11 @@ export default function Filter({product}) {
             return (
               <li key={product.id} className='product'>
                 <img onClick={()=> handleModal(product.image_url, product.title)} className = "product_img" src={product.image_url} alt={product.title}/>
-                <HiStar className='star'/>
+                <HiStar onClick={()=>handler(product)} 
+                className={[
+                "star",
+                getBookMarkArr.filter((item) => item.id === product.id).length >0 ? "active":"",
+                ].join(" ")}/>
                 <div className='content-box'>
                   <p className='title'># {product.title}</p>
                 </div>
@@ -43,7 +65,11 @@ export default function Filter({product}) {
             return (
               <li key={product.id} className='product'>
                 <img onClick = {()=> handleModal(product.image_url, product.title)} className = "product_img" src={product.image_url} alt={product.title}/>
-                <HiStar className='star'/>
+                <HiStar onClick={()=>handler(product)} 
+                className={[
+                "star",
+                getBookMarkArr.filter((item) => item.id === product.id).length >0 ? "active":"",
+                ].join(" ")}/>
                 <div className='content-box'>
                   <p className='title'>{product.title}</p>
                   <div className='sub_title'>{product.sub_title}</div>
@@ -54,7 +80,11 @@ export default function Filter({product}) {
             return (
               <li key={product.id} className='product'>
                 <img onClick = {()=> handleModal(product.brand_image_url, product.brand_name)} className = "product_img" src={product.brand_image_url} alt={product.title}/>
-                <HiStar className='star'/>
+                <HiStar onClick={()=>handler(product)} 
+                className={[
+                "star",
+                getBookMarkArr.filter((item) => item.id === product.id).length >0 ? "active":"",
+                ].join(" ")}/>
                 <div className='brand-box'>
                   <p className='title'>{product.brand_name}</p>
                   <div className='follower'>
