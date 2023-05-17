@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import { HiStar } from "react-icons/hi";
 import Modal from './Modal';
+import {addBookmark, removeBookMark} from '../actions/actions'
+import { useSelector, useDispatch } from "react-redux";
 
-export default function Filter({product, bookMarkData}) {
+
+
+export default function Filter({product}) {
+  const getBookMarkArrs = useSelector((state) => state.bookMarkReducer.bookmarks);
+
+  const dispatch = useDispatch();
+
   const [modalOn, setModalOn] = useState(false);
   const [imageTarget, setImageTarget] = useState("");
   const [imageTitle, setimageTitle] = useState("");
 
-  let getBookMarkArr = [...bookMarkData]
-
-  
 
   const handleModal = (imageUrl, title) => {
     setModalOn(!modalOn);
@@ -18,17 +23,16 @@ export default function Filter({product, bookMarkData}) {
   }
 
   const handler = (product) => {
-    if(getBookMarkArr.filter((item) => item.id === product.id).length >0) {
-      getBookMarkArr = getBookMarkArr.filter((item) => item.id !== product.id)
-    } else {
-      getBookMarkArr.push(product);
-    }
-    localStorage.setItem('bookmark', [JSON.stringify(getBookMarkArr)])
+  if(Array.isArray(getBookMarkArrs) && getBookMarkArrs.some((item) => item.id === product.id)) {
+    dispatch(removeBookMark(product))
+  } else {
+    dispatch(addBookmark(product))
   }
+}
 
   return (
     <ul className='product-list'>
-      {product.map((product) => {
+      {product?.map((product) => {
         switch (product.type) {
           case 'Product':
             return (
@@ -38,7 +42,7 @@ export default function Filter({product, bookMarkData}) {
                 onClick={()=>handler(product)} 
                 className={[
                 "star",
-                getBookMarkArr.filter((item) => item.id === product.id).length >0 ? "active":"",
+                Array.isArray(getBookMarkArrs) && getBookMarkArrs.some((item) => item.id === product.id) ? "active":"",
                 ].join(" ")}/>
                 <div className='product-box'>
                   <p className='title'>{product.title}</p>
@@ -54,7 +58,7 @@ export default function Filter({product, bookMarkData}) {
                 <HiStar onClick={()=>handler(product)} 
                 className={[
                 "star",
-                getBookMarkArr.filter((item) => item.id === product.id).length >0 ? "active":"",
+                Array.isArray(getBookMarkArrs) && getBookMarkArrs.some((item) => item.id === product.id) ? "active":"",
                 ].join(" ")}/>
                 <div className='content-box'>
                   <p className='title'># {product.title}</p>
@@ -65,10 +69,10 @@ export default function Filter({product, bookMarkData}) {
             return (
               <li key={product.id} className='product'>
                 <img onClick = {()=> handleModal(product.image_url, product.title)} className = "product_img" src={product.image_url} alt={product.title}/>
-                <HiStar onClick={()=>handler(product)} 
+                <HiStar onClick={() => handler(product)} 
                 className={[
                 "star",
-                getBookMarkArr.filter((item) => item.id === product.id).length >0 ? "active":"",
+                Array.isArray(getBookMarkArrs) && getBookMarkArrs.some((item) => item.id === product.id) ? "active":"",
                 ].join(" ")}/>
                 <div className='content-box'>
                   <p className='title'>{product.title}</p>
@@ -83,7 +87,7 @@ export default function Filter({product, bookMarkData}) {
                 <HiStar onClick={()=>handler(product)} 
                 className={[
                 "star",
-                getBookMarkArr.filter((item) => item.id === product.id).length >0 ? "active":"",
+                Array.isArray(getBookMarkArrs) && getBookMarkArrs.some((item) => item.id === product.id) ? "active":"",
                 ].join(" ")}/>
                 <div className='brand-box'>
                   <p className='title'>{product.brand_name}</p>
