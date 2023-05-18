@@ -1,43 +1,47 @@
 import React,{useState, useEffect} from 'react';
-
+// import All from '../images/전체.png'
+// import product from '../images/상품.png'
+// import category from '../images/카테고리.png'
+// import exhibition from '../images/기획전.png'
+// import brand from '../images/브랜드.png'
 
 
 export default function Product() {
 
     const[datas, setDatas] = useState([])
+    // const[categoryItem,setCategoryItem] = useState("All")
     useEffect(()=> {
         fetch("http://cozshopping.codestates-seb.link/api/v1/products?")
         .then((res) => res.json())
         .then((data) => setDatas(data))
     },[]);
     
+    // const categoryImg = [
+    // { img: All, title: "전체", type: "All" },
+    // { img: product, title: "상품", type: "Product" },
+    // { img: category, title: "카테고리", type: "Category" },
+    // { img: exhibition, title: "기획전", type: "Exhibition" },
+    // { img: brand, title: "브랜드", type: "Brand" },
+    // ];
     console.log(datas)
 
+    // const onchangeCategory = (category) => {
+    //     setCategoryItem(category.type)
+    // }
     return (
         <div>
             <div className='main'>
-                <div className='category-list'>
-                    <div className='category'>
-                        <img className='category-img' src='images/전체.png' alt='전체'/>
-                        <div className='category-title'>전체</div>
-                    </div>
-                    <div className='category product'>
-                            <img  className='category-img' src='images/상품.png' alt='상품'/>
-                            <div className='category-title'>상품</div>
-                    </div>
-                    <div className='category'>
-                            <img className='category-img' src='images/카테고리.png' alt='카테고리'/>
-                            <div className='category-title'>카테고리</div>
-                    </div>
-                    <div className='category'>
-                            <img className='category-img' src='images/브랜드.png' alt='브랜드'/>
-                            <div className='category-title'>브랜드</div>
-                    </div>
-                    <div className='category'>
-                            <img className='category-img' src='images/기획전.png' alt='기획전'/>
-                            <div className='category-title'>기획전</div>
-                    </div>
-                </div>
+                <ul className='category-list'>
+                    {/* {categoryImg.map((item, index) => {
+                    <li key={index} onClick={onchangeCategory(item.type)}>
+                        <img className = "product_img" src={All} alt='전체'/>
+                        <div className={item.type === categoryItem
+                        ? 'active_category': 'category-title'}>
+                        {item.title}
+                        </div>
+                    </li>
+                    })} */}
+                </ul>
             </div>
         </div>
     );

@@ -37,6 +37,10 @@
     color: #000000;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .hamburger_menu {
   position: absolute;
   left: 88.88%;
