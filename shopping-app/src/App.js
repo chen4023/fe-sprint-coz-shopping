@@ -1,24 +1,25 @@
 import './App.css';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Main from './pages/Main'
-import Product from './pages/Product'
-import BookMark from './pages/BookMark'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Main from './pages/Main';
+import Product from './pages/Product';
+import BookMark from './pages/BookMark';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
-
+import ProductList from './components/ProductList';
 
 function App() {
   return (
-    <BrowserRouter>
-    <Header/>
+    <Router>
+      <Header />
       <Routes>
-        <Route path='/' element={<Main/>}></Route>
-        <Route path='/product' element={<Product/>}></Route>
-        <Route path='/bookmark' element={<BookMark/>}></Route>
+        <Route path="/" element={<Main />} />
+        <Route path="/product" element={<Product />}>
+          <Route path=":categoryName" element={<ProductList />} />
+        </Route>
+        <Route path="/bookmark" element={<BookMark />} />
       </Routes>
-    <Footer/>
-    </BrowserRouter>
+      <Footer />
+    </Router>
   );
 }
 
