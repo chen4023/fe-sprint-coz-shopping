@@ -26,8 +26,8 @@ export default function Main() {
                     </div>
                     <div className='sub_container'>
                         <h2 className='main_title'>북마크 리스트</h2>
-                        {getBookMarkArrs? 
-                        <Filter product={getBookMarkArrs}/>: ''}
+                        {getBookMarkArrs?
+                        <Filter product={getBookMarkArrs.slice(0,4)}/>: ''}
                     </div>
                 </div>
             </div>
